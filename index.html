@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to DORA SHOP</title>
+    <style>
+        body { background-color: #0b0c10; color: #ffffff; font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+        .container { max-width: 450px; margin: 0 auto; padding: 20px; }
+        h1 { color: #ffcc00; font-size: 26px; text-shadow: 0 0 10px rgba(255,204,0,0.5); }
+        .banner { border: 2px solid #ffcc00; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+        .banner img { width: 100%; display: block; }
+        .plans-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .plan-box { background: #151a22; border: 1px solid #232d38; padding: 15px; border-radius: 10px; cursor: pointer; text-decoration: none; color: white; }
+        .plan-box:hover { border-color: #ffcc00; }
+        .in-stock { color: #10b981; font-size: 11px; font-weight: bold; }
+        .duration { font-size: 16px; font-weight: bold; margin: 5px 0; }
+        .price { font-size: 20px; color: #ffcc00; font-weight: bold; }
+        .info-title { font-size: 20px; font-weight: bold; margin-top: 25px; }
+        .info-sub { color: #ff4444; font-size: 13px; font-weight: bold; margin-bottom: 20px; }
+        .action-btn { display: block; padding: 14px; margin-bottom: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; color: white; }
+        .btn-account { background: linear-gradient(to right, #ec4899, #db2777); }
+        .btn-download { background: linear-gradient(to right, #3b82f6, #2563eb); }
+        .btn-support { background: linear-gradient(to right, #10b981, #059669); }
+
+        /* पेमेंट स्क्रीन का स्टाइल */
+        #payment-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0b0c10; z-index: 100; overflow-y: auto; padding-top: 20px; }
+        .checkout-box { max-width: 400px; margin: 0 auto; background: #131722; border: 1px solid #1e222d; border-radius: 16px; padding: 25px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); }
+        .verified-tag { color: #ffaa00; font-size: 18px; font-weight: bold; margin-bottom: 2px; }
+        .ref-id { color: #707e94; font-size: 11px; text-align: right; margin-bottom: 15px; }
+        .amount { font-size: 38px; font-weight: bold; color: #ffffff; margin: 10px 0; }
+        .timer { background: #221c11; color: #ffaa00; display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+        .qr-wrapper { background: white; padding: 15px; border-radius: 12px; display: inline-block; margin: 25px 0; border: 3px solid #10b981; }
+        .qr-wrapper img { width: 220px; height: 220px; display: block; }
+        .btn-paytm { background-color: #002f6c; color: white; border: none; padding: 12px; font-size: 16px; font-weight: bold; border-radius: 8px; width: 100%; cursor: pointer; margin-top: 15px; }
+        .back-btn { background: #232d38; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-bottom: 15px; }
+
+        /* UTR वेरिफिकेशन फॉर्म */
+        .utr-box { margin-top: 20px; background: #1c2230; padding: 15px; border-radius: 10px; border: 1px dashed #3b82f6; }
+        .utr-input { width: 90%; padding: 10px; border-radius: 5px; border: 1px solid #3b82f6; background: #0b0c10; color: white; text-align: center; font-size: 16px; font-weight: bold; letter-spacing: 2px; margin-bottom: 10px; }
+        .btn-verify { background: #10b981; color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; }
+    </style>
+</head>
+<body>
+
+    <!-- होम स्क्रीन -->
+    <div class="container" id="home-screen">
+        <h1>Welcome to DORA SHOP</h1>
+        <div class="banner">
+            <img src="https://placeholder.com" alt="Banner">
+        </div>
+        <div style="color: #3b82f6; font-weight: bold; margin-bottom: 10px;">ANDROID & IOS MOD PLANS</div>
+        
+        <div class="plans-grid">
+            <div class="plan-box" onclick="openPayment(135, '1 Day')">
+                <div class="in-stock">● IN STOCK</div>
+                <div class="duration">1 DAY</div>
+                <div class="price">₹135</div>
+            </div>
+            <div class="plan-box" onclick="openPayment(540, '7 Days')">
+                <div class="in-stock">● IN STOCK</div>
+                <div class="duration">7 DAYS</div>
+                <div class="price">₹540</div>
+            </div>
+            <div class="plan-box" onclick="openPayment(1300, '1 Month')">
+                <div class="in-stock">● IN STOCK</div>
+                <div class="duration">1 MONTH</div>
+                <div class="price">₹1300</div>
+            </div>
+            <div class="plan-box" onclick="openPayment(2000, '2 Months')">
+                <div class="in-stock">● IN STOCK</div>
+                <div class="duration">2 MONTHS</div>
+                <div class="price">₹2000</div>
+            </div>
+        </div>
+
+        <div class="info-title">IOS & ANDROID HACK</div>
+        <div class="info-sub">100% SAFE • ROOT / NON-ROOT<br>BGMI ACCOUNTS ALSO AVAILABLE ❤️</div>
+        <a href="#" class="action-btn btn-account">🏪 ACCOUNT STORE</a>
+        <a href="#" class="action-btn btn-download">📥 ALL HACK DOWNLOAD CENTER</a>
+        <a href="https://wa.me" class="action-btn btn-support">💬 CUSTOMER SUPPORT</a>
+    </div>
+
+    <!-- पेमेंट स्क्रीन -->
+    <div id="payment-screen">
+        <button class="back-btn" onclick="closePayment()">← Back to Home</button>
+        <div class="checkout-box">
+            <div class="ref-id" id="ref-id-text">REF ID: ORD00000000</div>
+            <div class="verified-tag">DORA SHOP ✔</div>
+            <div style="color: #10b981; font-size: 11px; font-weight: bold; margin-bottom: 20px;">VERIFIED MERCHANT</div>
+            <div style="color:#707e94; font-size:13px;">PAYABLE AMOUNT</div>
+            <div class="amount" id="pay-amount">₹ 0.00</div>
+            <div class="timer">⏳ Expires in <span id="countdown">29:43</span></div>
+            <div class="qr-wrapper">
+                <img id="qr-image" src="" alt="UPI QR">
+            </div>
+            <div style="color: #10b981; font-size: 13px;">Scan the QR code with any UPI application to pay.</div>
+            <button class="btn-paytm" onclick="openUPIIntent()">📱 Open Paytm / PhonePe</button>
+            
+            <!-- UTR वेरिफिकेशन फॉर्म -->
+            <div class="utr-box">
+                <div style="font-size: 12px; color: #ffcc00; margin-bottom: 8px; font-weight: bold;">पेमेंट करने के बाद 12 अंकों का UTR / Ref No डालें:</div>
+                <input type="text" id="utr-input" class="utr-input" placeholder="12 Digit UTR Number" maxlength="12">
+                <button class="btn-verify" onclick="verifyPayment()">Verify & Get Key</button>
+            </div>
+
+            <div style="margin-top: 30px; font-size: 11px; color: #475569;">SECURED BY QUICKGATEWAY</div>
+        </div>
+    </div>
+
+    <script>
+        const myUpiId = "7073942302@ybl"; 
+        const merchantName = "DORA_SHOP";
+        const myModPanelLink = "https://xsilent.shop";
+        
+        let currentUpiLink = "";
+
+        function openPayment(amount, planName) {
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('payment-screen').style.display = 'block';
+            document.getElementById('pay-amount').innerText = "₹ " + amount + ".00";
+            
+            let refId = "ORD" + Math.floor(Math.random() * 100000000000);
+            document.getElementById('ref-id-text').innerText = "REF ID: " + refId;
+
+            currentUpiLink = `upi://pay?pa=${myUpiId}&pn=${encodeURIComponent(merchantName)}&am=${amount}&cu=INR&tr=${refId}`;
+            document.getElementById('qr-image').src = "https://qrserver.com" + encodeURIComponent(currentUpiLink);
+        }
+
+        function openUPIIntent() {
+            if(currentUpiLink) window.location.href = currentUpiLink;
+        }
+
+        function verifyPayment() {
+            const utrValue = document.getElementById('utr-input').value.trim();
+            
+            if (utrValue.length !== 12 || isNaN(utrValue)) {
+                alert("कृपया सही 12 अंकों का UTR नंबर डालें जो आपके पेमेंट रसीद (Google Pay/PhonePe) पर लिखा है।");
+                return;
+            }
+
+            alert("पेमेंट वेरिफाई हो गया है! आपको आपके Mod APK Panel पर भेजा जा रहा है...");
+            window.location.href = myModPanelLink;
+        }
+
+        function closePayment() {
+            document.getElementById('home-screen').style.display = 'block';
+            document.getElementById('payment-screen').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
